@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.langchain4j</groupId>
-            <artifactId>quarkus-langchain4j-openshift-ai</artifactId>
+            <artifactId>quarkus-langchain4j-mistral-ai</artifactId>
             <version>${quarkus-langchain.version}</version>
         </dependency>
         <!-- UI -->
