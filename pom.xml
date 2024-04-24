@@ -10,7 +10,7 @@
     <properties>
         <assembly-plugin.version>3.6.0</assembly-plugin.version>
 
-        <quarkus.version>3.6.4</quarkus.version>
+        <quarkus.version>3.9.4</quarkus.version>
         <quarkus-langchain.version>0.11.1</quarkus-langchain.version>
         <langchain.version>0.30.0</langchain.version>
     </properties>
