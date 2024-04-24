@@ -43,9 +43,9 @@ export class DemoTitle extends LitElement {
                 <h1>Cash Critique</h1>
             </div>
             <div class="explanation">
-                This demo shows how an LLM can triage reviews automatically.
-                This frontend lets you write a review about a financial product and submit it to the backend.
-                The backend use the GPT 3.5-turbo LLM (provided by Microsoft Azure) to evaluate the review and provide a response.
+                This demo shows how an LLM hosted on OpenShift AI can triage reviews automatically.
+                This frontend lets you write a review submit it to the backend.
+                The backend use an LLM hosted on OpenShift to evaluate the review and provide a response.
             </div>
         `
     }

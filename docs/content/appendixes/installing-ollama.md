@@ -1,26 +1,17 @@
-# Installing LLAMA2
+# Installing Mistral
 
-To install LLAMA 2, we will use [ollama](https://ollama.ai/).
-If you use Windows, you can follow the instructions from [ollama's official Docker image](https://ollama.ai/blog/ollama-is-now-available-as-an-official-docker-image).
-Note that when using Docker, the model will be running in a container.
-Without tuning, it is quite slow.
-
-If you use Linux or Mac, download ollama from [ollama's download page](https://ollama.ai/download) and follow the installation instructions.
-You can use Homebrew on Mac:
-
-```bash
-$ brew install ollama
-```
+To install Mistral or LLAMA 3, we will use [ollama](https://ollama.ai/).
+Download ollama from [ollama's download page](https://ollama.ai/download) and follow the installation instructions.
 
 Once installed, you should have access to the `ollama` command line tool:
 
 ```bash
-$ ollama --version
+$©
 ollama version is 0.1.17
 ```
 
 Ollama can run multiple models, as you can see on [ollama's library](https://ollama.ai/library).
-We will use the `llama2` model, which is a GPT-2 model trained on a large corpus of text.
+We will use the `mistral` model, which is a Mistral is a 7B model, and we are choosing this one to have a corresponding type of models that the one we hosted on Openshift AI
 For that, you first need to start the ollama server:
 
 ```bash
@@ -40,8 +31,9 @@ You can check the list of available models using:
 
 ```bash
 $ ollama list
-NAME         	ID          	SIZE  	
-llama2:latest	78e26419b446	3.8 GB	
+NAME          	ID          	SIZE  	MODIFIED
+llama3:latest 	a6990ed6be41	4.7 GB	55 seconds ago
+mistral:latest	61e88e884507	4.1 GB	12 minutes ago
 ```
 
 Once pulled, we will be able to use it.

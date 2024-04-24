@@ -13,11 +13,12 @@ import java.time.temporal.ChronoUnit;
 @RegisterAiService
 public interface TriageService {
 
-    @SystemMessage("""
+    @UserMessage("""
+            <s>[INST] <<SYS>>
             You are working for a bank. You are an AI processing reviews about financial products. You need to triage the reviews into positive and negative ones.
             You will always answer with a JSON document, and only this JSON document.
-            """)
-    @UserMessage("""
+            <</SYS>>
+
             Your task is to process the review delimited by ---.
             Apply a sentiment analysis to the passed review to determine if it is positive or negative.
             The review can be in any language. So, you will need to identify the language.
@@ -34,6 +35,7 @@ public interface TriageService {
             ---
             {review}
             ---
+            [/INST]
             """)
     @Retry(maxRetries = 2)
     @Fallback(fallbackMethod = "fallback")
