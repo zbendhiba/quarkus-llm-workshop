@@ -16,6 +16,7 @@ import org.mvnpm.importmap.Aggregator;
 public class ImportmapResource {
     private String importmap;
 
+    //TODO check this out
     // See https://github.com/WICG/import-maps/issues/235
     // This does not seem to be supported by browsers yet...
     @GET
