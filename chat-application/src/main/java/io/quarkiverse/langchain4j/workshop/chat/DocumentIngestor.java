@@ -21,7 +21,7 @@ public class DocumentIngestor {
 
     /**
      * The embedding store (the database).
-     * The bean is provided by the quarkus-langchain4j-redis extension.
+     * The bean is provided by the quarkus-langchain4j-infinispan extension.
      */
     @Inject
     InfinispanEmbeddingStore store;
