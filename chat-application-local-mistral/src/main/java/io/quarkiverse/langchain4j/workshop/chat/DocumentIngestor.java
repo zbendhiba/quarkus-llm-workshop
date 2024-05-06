@@ -5,7 +5,7 @@ import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
-import io.quarkiverse.langchain4j.redis.RedisEmbeddingStore;
+import io.quarkiverse.langchain4j.infinispan.InfinispanEmbeddingStore;
 import io.quarkus.runtime.StartupEvent;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
@@ -21,10 +21,10 @@ public class DocumentIngestor {
 
     /**
      * The embedding store (the database).
-     * The bean is provided by the quarkus-langchain4j-redis extension.
+     * The bean is provided by the quarkus-langchain4j-infinispan extension.
      */
     @Inject
-    RedisEmbeddingStore store;
+    InfinispanEmbeddingStore store;
 
     /**
      * The embedding model (how the vector of a document is computed).
@@ -37,10 +37,10 @@ public class DocumentIngestor {
         System.out.printf("Ingesting documents...%n");
         List<Document> documents = FileSystemDocumentLoader.loadDocuments(new File("src/main/resources/catalog").toPath(), new TextDocumentParser());
         var ingestor = EmbeddingStoreIngestor.builder()
-                .embeddingStore(store)
-                .embeddingModel(embeddingModel)
-                .documentSplitter(recursive(500, 0))
-                .build();
+            .embeddingStore(store)
+            .embeddingModel(embeddingModel)
+            .documentSplitter(recursive(500, 0))
+            .build();
         ingestor.ingest(documents);
         System.out.printf("Ingested %d documents.%n", documents.size());
     }
