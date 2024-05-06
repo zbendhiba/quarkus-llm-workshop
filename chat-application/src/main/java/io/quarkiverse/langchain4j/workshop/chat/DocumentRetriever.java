@@ -1,6 +1,7 @@
 package io.quarkiverse.langchain4j.workshop.chat;
 
 
+import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.rag.DefaultRetrievalAugmentor;
 import dev.langchain4j.rag.RetrievalAugmentor;
@@ -16,7 +17,7 @@ public class DocumentRetriever implements Supplier<RetrievalAugmentor> {
 
     private final RetrievalAugmentor augmentor;
 
-    DocumentRetriever(InfinispanEmbeddingStore store, EmbeddingModel model) {
+    DocumentRetriever(InfinispanEmbeddingStore store, AllMiniLmL6V2EmbeddingModel model) {
         EmbeddingStoreContentRetriever contentRetriever = EmbeddingStoreContentRetriever.builder()
             .embeddingModel(model)
             .embeddingStore(store)
