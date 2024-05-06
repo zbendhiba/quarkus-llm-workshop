@@ -1,10 +1,5 @@
 # Quarkus LLM Workshop
 
-You are about to embark on a transformative journey as we explore the integration of AI into enterprise applications during this workshop.
-With technology evolving at an unprecedented pace, this workshop aims to demystify the process of infusing Artificial Intelligence and Large Language Models (LLM) into Quarkus applications.
+This is a revised version of https://github.com/cescoffier/quarkus-llm-worksho tailored for Red Hat Summit 2024.
 
-![Quarkus Langchain4J](docs/content/assets/overall.jpg)
-
-Navigate to the [workshop page](https://cescoffier.github.io/quarkus-llm-workshop/) to get started, or scan the following qr code:
-
-![QR Code](docs/content/assets/qrcode.png)
+Please revise the license https://github.com/cescoffier/quarkus-llm-workshop/blob/main/LICENSE before usage.
