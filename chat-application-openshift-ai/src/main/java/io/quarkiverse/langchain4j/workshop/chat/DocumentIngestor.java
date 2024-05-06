@@ -5,7 +5,7 @@ import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
-import io.quarkiverse.langchain4j.redis.RedisEmbeddingStore;
+import io.quarkiverse.langchain4j.infinispan.InfinispanEmbeddingStore;
 import io.quarkus.runtime.StartupEvent;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
@@ -24,7 +24,7 @@ public class DocumentIngestor {
      * The bean is provided by the quarkus-langchain4j-redis extension.
      */
     @Inject
-    RedisEmbeddingStore store;
+    InfinispanEmbeddingStore store;
 
     /**
      * The embedding model (how the vector of a document is computed).

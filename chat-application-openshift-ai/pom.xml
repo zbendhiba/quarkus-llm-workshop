@@ -10,8 +10,8 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>quarkus-llm-workshop-chat-hugging-face</artifactId>
-    <name>Quarkus LLM Workshop :: Chat Application (using Hugging Face)</name>
+    <artifactId>quarkus-llm-workshop-chat-openshift-ai</artifactId>
+    <name>Quarkus LLM Workshop :: Chat Application (using Openshift AI)</name>
 
     <packaging>jar</packaging>
 
@@ -40,7 +40,11 @@
             <artifactId>quarkus-langchain4j-infinispan</artifactId>
             <version>${quarkus-langchain.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+            <version>${langchain.version}</version>
+        </dependency>
         <!-- UI -->
         <dependency>
             <groupId>org.mvnpm</groupId>
