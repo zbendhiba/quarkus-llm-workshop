@@ -21,3 +21,5 @@ buildNumber.properties
 *.iml
 
 site/
+
+.DS_Store
