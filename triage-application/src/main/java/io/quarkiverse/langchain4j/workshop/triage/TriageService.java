@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 public interface TriageService {
 
     @UserMessage("""
-            <s>[INST] <<SYS>>
+            <<SYS>>
             You are working for a bank. You are an AI processing reviews about financial products. You need to triage the reviews into positive and negative ones.
             You will always answer with a JSON document, and only this JSON document.
             <</SYS>>
@@ -35,11 +35,7 @@ public interface TriageService {
             ---
             {review}
             ---
-            [/INST]
             """)
-    @Retry(maxRetries = 2)
-    @Fallback(fallbackMethod = "fallback")
-    @RateLimit(value = 2, window = 10, windowUnit = ChronoUnit.SECONDS)
     TriagedReview triage(String review);
 
     static TriagedReview fallback(String review) {
