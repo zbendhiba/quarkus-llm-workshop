@@ -1,47 +1,26 @@
 package io.quarkiverse.langchain4j.workshop.chat;
 
-import dev.langchain4j.data.document.Document;
-import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
-import dev.langchain4j.data.document.parser.TextDocumentParser;
-import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
-import io.quarkiverse.langchain4j.infinispan.InfinispanEmbeddingStore;
-import io.quarkus.runtime.StartupEvent;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.event.Observes;
-import jakarta.inject.Inject;
-
-import java.io.File;
-import java.util.List;
-
-import static dev.langchain4j.data.document.splitter.DocumentSplitters.recursive;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.file.GenericFile;
+import org.apache.camel.component.qdrant.Qdrant;
+import org.apache.camel.component.qdrant.QdrantAction;
+import org.apache.camel.spi.DataType;
 
 @ApplicationScoped
-public class DocumentIngestor {
+public class DocumentIngestor extends RouteBuilder {
 
-    /**
-     * The embedding store (the database).
-     * The bean is provided by the quarkus-langchain4j-redis extension.
-     */
-    @Inject
-    InfinispanEmbeddingStore store;
+    @Override
+    public void configure() throws Exception {
 
-    /**
-     * The embedding model (how the vector of a document is computed).
-     * The bean is provided by the LLM (like openai) extension.
-     */
-    @Inject
-    EmbeddingModel embeddingModel;
+        from("file:src/main/resources/catalog?noop=true")
+            .log("body :: ${body}")
+            .convertBodyTo(String.class)
+            .to("langchain-embeddings:hello&embedding-model=#embeddingModel")
+            .setHeader(Qdrant.Headers.ACTION, constant(QdrantAction.UPSERT))
+            .transform(new DataType("qdrant:embeddings"))
+            .to("qdrant:camel");
 
-    public void ingest(@Observes StartupEvent event) {
-        System.out.printf("Ingesting documents...%n");
-        List<Document> documents = FileSystemDocumentLoader.loadDocuments(new File("src/main/resources/catalog").toPath(), new TextDocumentParser());
-        var ingestor = EmbeddingStoreIngestor.builder()
-                .embeddingStore(store)
-                .embeddingModel(embeddingModel)
-                .documentSplitter(recursive(500, 0))
-                .build();
-        ingestor.ingest(documents);
-        System.out.printf("Ingested %d documents.%n", documents.size());
     }
+
 }

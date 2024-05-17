@@ -11,9 +11,21 @@
         <assembly-plugin.version>3.6.0</assembly-plugin.version>
 
         <quarkus.version>3.9.4</quarkus.version>
-        <quarkus-langchain.version>0.11.1</quarkus-langchain.version>
+        <quarkus-langchain.version>0.14.0</quarkus-langchain.version>
         <langchain.version>0.30.0</langchain.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.quarkus.platform</groupId>
+                <artifactId>quarkus-camel-bom</artifactId>
+                <version>3.10.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <modules>
         <module>triage-application</module>
@@ -21,6 +33,7 @@
         <module>chat-application-local-mistral</module>
         <module>chat-application-openshift-ai</module>
     </modules>
+
 
 
 
